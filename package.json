@@ -1,0 +1,58 @@
+{
+  "name": "umijs-electron-boilerplate",
+  "private": true,
+  "author": "zhangsanfeng",
+  "scripts": {
+    "setup": "umi setup",
+    "postinstall": "umi setup && ts-node .erb/scripts/check-native-dep.js && electron-builder install-app-deps",
+    "lint": "cross-env NODE_ENV=development eslint . --ext .js,.jsx,.ts,.tsx",
+    "start:web": "cross-env PORT=8015 umi dev",
+    "start:main": "cross-env NODE_ENV=development wait-on http://localhost:8015 && cross-env NODE_ENV=development electronmon -r ts-node/register/transpile-only electron/main.ts",
+    "start:preload": "cross-env NODE_ENV=development TS_NODE_TRANSPILE_ONLY=true webpack --config ./.erb/configs/webpack.config.preload.dev.ts",
+    "start:app": "concurrently \"npm run start:web\" \"npm run start:preload\" \"npm run start:main\"",
+    "build:main": "cross-env NODE_ENV=production TS_NODE_TRANSPILE_ONLY=true webpack --config ./.erb/configs/webpack.config.main.prod.ts",
+    "build:innerWeb": "cross-env INNER_WEB_BUILD=true umi build",
+    "build:app": "concurrently \"npm run build:main\" \"npm run build:innerWeb\"",
+    "rebuild": "electron-rebuild --parallel --types prod,dev,optional --module-dir release/app",
+    "build:web": "umi build",
+    "test11": "electronmon -r ts-node/register/transpile-only .",
+    "package": "ts-node ./.erb/scripts/clean.js dist && npm run build:app && electron-builder build --publish never",
+    "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
+    "test": "umi-test",
+    "test:coverage": "umi-test --coverage"
+  },
+  "main": "./electron/main.ts",
+  "dependencies": {
+    "electron-debug": "^3.2.0",
+    "electron-log": "^5.1.2",
+    "electron-updater": "^6.1.8",
+    "umi": "^4.1.2"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.64",
+    "@types/react-dom": "^18.2.21",
+    "concurrently": "^8.2.2",
+    "cross-env": "^7.0.3",
+    "electron": "^26.2.1",
+    "electron-builder": "^24.13.3",
+    "electron-devtools-installer": "^3.2.0",
+    "electronmon": "^2.0.2",
+    "terser-webpack-plugin": "^5.3.10",
+    "ts-loader": "^9.5.1",
+    "ts-node": "^10.9.1",
+    "tsconfig-paths-webpack-plugin": "^4.1.0",
+    "typescript": "^5.4.2",
+    "wait-on": "^7.2.0",
+    "webpack": "^5.90.3",
+    "webpack-bundle-analyzer": "^4.10.1",
+    "webpack-cli": "^5.1.4",
+    "webpack-merge": "^5.10.0"
+  },
+  "electronmon": {
+    "patterns": [
+      "!**/**",
+      "electron/**"
+    ],
+    "logLevel": "info"
+  }
+}

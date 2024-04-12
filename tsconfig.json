@@ -1,0 +1,43 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "importHelpers": true,
+    "jsx": "react-jsx",
+    "esModuleInterop": true,
+    "sourceMap": true,
+    "baseUrl": "./",
+    "strict": true,
+    "allowJs": true,
+    "paths": {
+      "@bifrost/*": ["node_modules/@bifrost/*"],
+      "@/*": ["src/*"],
+      "@@/*": ["src/.umi/*"],
+      "@bifrost/components/*": ["./node_modules/@bifrost/components/src/*"],
+      "@bifrost/utils/*": ["./node_modules/@bifrost/utils/src/*"],
+      "@bifrost/painting/*": ["./node_modules/@bifrost/painting/src/*"]
+    },
+    "allowSyntheticDefaultImports": true
+  },
+  "include": [
+    "mock/**/*",
+    "src/**/*",
+    "electron/**/*",
+    "config/**/*",
+    ".umirc.ts",
+    "typings.d.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "lib",
+    "es",
+    "dist",
+    "typings",
+    "**/__test__",
+    "test",
+    "docs",
+    "tests"
+  ]
+}
