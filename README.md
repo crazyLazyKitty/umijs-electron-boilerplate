@@ -8,6 +8,8 @@
 git clone https://github.com/crazyLazyKitty/umijs-electron-boilerplate.git [你的项目名称]
 ```
 
+修改git remote 
+
 2. 进入新项目目录
 
 安装依赖
