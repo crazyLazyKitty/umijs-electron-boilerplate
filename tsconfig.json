@@ -12,12 +12,7 @@
     "strict": true,
     "allowJs": true,
     "paths": {
-      "@bifrost/*": ["node_modules/@bifrost/*"],
       "@/*": ["src/*"],
-      "@@/*": ["src/.umi/*"],
-      "@bifrost/components/*": ["./node_modules/@bifrost/components/src/*"],
-      "@bifrost/utils/*": ["./node_modules/@bifrost/utils/src/*"],
-      "@bifrost/painting/*": ["./node_modules/@bifrost/painting/src/*"]
     },
     "allowSyntheticDefaultImports": true
   },
