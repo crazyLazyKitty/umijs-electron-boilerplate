@@ -15,7 +15,6 @@
     "build:app": "concurrently \"npm run build:main\" \"npm run build:innerWeb\"",
     "rebuild": "electron-rebuild --parallel --types prod,dev,optional --module-dir release/app",
     "build:web": "umi build",
-    "test11": "electronmon -r ts-node/register/transpile-only .",
     "package": "ts-node ./.erb/scripts/clean.js dist && npm run build:app && electron-builder build --publish never",
     "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
     "test": "umi-test",
